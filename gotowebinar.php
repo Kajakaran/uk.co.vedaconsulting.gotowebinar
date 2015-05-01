@@ -145,9 +145,9 @@ function gotowebinar_civicrm_post( $op, $objectName, $objectId, &$objectRef ) {
       INNER JOIN civicrm_email ce ON (ce.contact_id = cc.id AND ce.is_primary = 1)
       INNER JOIN civicrm_participant cp ON cp.contact_id = cc.id
       LEFT JOIN civicrm_value_webinar_participant cw ON cp.id = cw.entity_id
-      WHERE cp.id = %1 AND cp.status_id = %2 AND (cw.registrant_key is null OR cw.registrant_key='')";
+      WHERE cp.id = %1 AND (cw.registrant_key is null OR cw.registrant_key='')";
 
-    $ParticipantQueryParams = array(1 => array($pid, 'Int'), 2 => array(1,'Int'));
+    $ParticipantQueryParams = array(1 => array($pid, 'Int'));
   
     $fields = array();
     $fieldsDao = CRM_Core_DAO::executeQuery($ParticipantQuery, $ParticipantQueryParams);
